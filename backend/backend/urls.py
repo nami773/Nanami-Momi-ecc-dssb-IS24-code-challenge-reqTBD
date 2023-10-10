@@ -15,8 +15,37 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from core.models import Developer, Product
+from rest_framework import routers, serializers, viewsets
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    Developers = serializers.SerializerMethodField()
+    methodology = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ['productId', 'productName', 'productOwnerName', 'Developers',
+                  'scrumMasterName', 'startDate', 'methodology', 'location']
+
+    def get_Developers(self, obj):
+        return [developer.name for developer in obj.Developers.all()]
+
+    def get_methodology(self, obj):
+        return obj.get_methodology_display()
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = ()
+
+
+router = routers.DefaultRouter()
+router.register(r'product', ProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
 ]
