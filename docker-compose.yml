@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
 
     ports:
-      - "8000:8000"
+      - "3000:3000"
 
     volumes:
       - ./backend:/app/backend
@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
 
     ports:
-      - "3000:3000"
+      - "3200:3200"
 
     volumes:
       - ./frontend:/app/frontend

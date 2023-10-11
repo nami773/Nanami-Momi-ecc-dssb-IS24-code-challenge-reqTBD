@@ -5,15 +5,10 @@ from rest_framework import routers, serializers, viewsets
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    methodology = serializers.SerializerMethodField()
-
     class Meta:
         model = Product
         fields = ['productId', 'productName', 'productOwnerName', 'Developers',
                   'scrumMasterName', 'startDate', 'methodology', 'location']
-
-    def get_methodology(self, obj):
-        return obj.get_methodology_display()
 
 
 class ProductViewSet(viewsets.ModelViewSet):

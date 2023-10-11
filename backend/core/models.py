@@ -4,8 +4,8 @@ from django.db import models
 
 
 class Product(models.Model):
-    AGILE = "AG"
-    WATERFALL = "WA"
+    AGILE = "Agile"
+    WATERFALL = "Waterfall"
     METHODOLOGY_CHOICES = [
         (AGILE, "Agile"),
         (WATERFALL, "Waterfall"),
@@ -18,7 +18,7 @@ class Product(models.Model):
     startDate = models.DateField()
     Developers = models.JSONField(default=[])
     methodology = models.CharField(
-        max_length=2,
+        max_length=10,
         choices=METHODOLOGY_CHOICES,
         default=AGILE,
     )
