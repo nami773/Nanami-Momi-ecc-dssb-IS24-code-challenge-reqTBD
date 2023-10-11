@@ -29,6 +29,12 @@ export const EditModal = ({ show, setShow, editProduct, item }) => {
   const handleEdit = (e) => {
     e.preventDefault();
     const data = serialize(e.target, { hash: true, empty: true });
+    if (!data["location"].startsWith("https://github.com/bcgov")) {
+      alert(
+        "Please enter a valid github repository link under https://github.com/bcgov"
+      );
+      return;
+    }
     data["Developers"] = devList;
     editProduct(data, item.productId);
   };
@@ -51,6 +57,7 @@ export const EditModal = ({ show, setShow, editProduct, item }) => {
             <Form.Control
               type="text"
               name="productName"
+              maxLength="200"
               defaultValue={item.productName}
               required
             />
@@ -60,6 +67,7 @@ export const EditModal = ({ show, setShow, editProduct, item }) => {
             <Form.Control
               type="text"
               name="scrumMasterName"
+              maxLength="200"
               defaultValue={item.scrumMasterName}
               required
             />
@@ -69,6 +77,7 @@ export const EditModal = ({ show, setShow, editProduct, item }) => {
             <Form.Control
               type="text"
               name="productOwnerName"
+              maxLength="200"
               defaultValue={item.productOwnerName}
               required
             />
@@ -96,6 +105,7 @@ export const EditModal = ({ show, setShow, editProduct, item }) => {
               type="link"
               placeholder="Github repository link under github.com/bcgov"
               name="location"
+              maxLength="2048"
               defaultValue={item.location}
             />
           </Form.Group>

@@ -5,6 +5,9 @@ import Badge from "react-bootstrap/Badge";
 import AddModal from "./AddModal";
 import EditModal from "./EditModal";
 import { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import axios from "axios";
 
 export const Page = () => {
@@ -21,30 +24,89 @@ export const Page = () => {
     setShowEdit(true);
   };
   const getProducts = () => {
-    client.get("product/").then((response) => {
-      setProduct(response.data);
-    });
+    client
+      .get("product/")
+      .then((response) => {
+        setProduct(response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert("Server Error, please try again later.");
+          console.error("Server Error:", error.response.status);
+        } else if (error.request) {
+          alert("Network Error. Please try again later.");
+          console.error("Network Error:", error.request);
+        } else {
+          alert("Error. Please try again later: ", error.message);
+          console.error("Error:", error.message);
+        }
+      });
   };
   const addProduct = (product) => {
     console.log(product);
-    client.post("product/", product).then((response) => {
-      console.log(response.data);
-      getProducts();
-      setShowAdd(false);
-    });
+    client
+      .post("product/", product)
+      .then((response) => {
+        console.log(response.data);
+        getProducts();
+        setShowAdd(false);
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert("Server Error, please try again later.");
+          console.error("Server Error:", error.response.status);
+        } else if (error.request) {
+          alert("Network Error. Please try again later.");
+          console.error("Network Error:", error.request);
+        } else {
+          alert("Error. Please try again later: ", error.message);
+          console.error("Error:", error.message);
+        }
+      });
   };
   const editProduct = (product, id) => {
     console.log(product);
-    client.put(`product/${id}/`, product).then((response) => {
-      console.log(response.data);
-      getProducts();
-      setShowEdit(false);
-    });
+    client
+      .put(`product/${id}/`, product)
+      .then((response) => {
+        console.log(response.data);
+        getProducts();
+        setShowEdit(false);
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert("Server Error, please try again later.");
+          console.error("Server Error:", error.response.status);
+        } else if (error.request) {
+          alert("Network Error. Please try again later.");
+          console.error("Network Error:", error.request);
+        } else {
+          alert("Error. Please try again later: ", error.message);
+          console.error("Error:", error.message);
+        }
+      });
   };
   useEffect(() => {
-    client.get("product/").then((response) => {
-      setProduct(response.data);
-    });
+    const getInitialData = async () => {
+      axios
+        .get("http://localhost:3000/api/product/")
+        .then((response) => {
+          setProduct(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            alert("Server Error, please try again later.");
+            console.error("Server Error:", error.response.status);
+          } else if (error.request) {
+            alert("Network Error. Please try again later.");
+            console.error("Network Error:", error.request);
+          } else {
+            alert("Error. Please try again later: ", error.message);
+            console.error("Error:", error.message);
+          }
+        });
+    };
+    getInitialData();
   }, []);
 
   return (
@@ -55,6 +117,25 @@ export const Page = () => {
       <Button variant="primary" className="my-2" onClick={handleShowAdd}>
         Add Product
       </Button>{" "}
+      <Form>
+        <Row>
+          <Col>
+            <Form.Control
+              type="text"
+              placeholder="Search by Developer's name"
+            />
+          </Col>
+          <Col>
+            <Form.Control
+              type="text"
+              placeholder="Search by Scrum Master's name"
+            />
+          </Col>
+          <Col>
+            <Button variant="primary">Search</Button>{" "}
+          </Col>
+        </Row>
+      </Form>
       <AddModal show={showAdd} setShow={setShowAdd} addProduct={addProduct} />
       <EditModal
         show={showEdit}

@@ -46,15 +46,30 @@ export const AddModal = ({ show, setShow, addProduct }) => {
         <Form onSubmit={handleCreate}>
           <Form.Group className="mb-3" controlId="productName">
             <Form.Label>Product Name</Form.Label>
-            <Form.Control type="text" name="productName" required />
+            <Form.Control
+              type="text"
+              name="productName"
+              maxLength="200"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="scrumMasterName">
             <Form.Label>Scrum Master</Form.Label>
-            <Form.Control type="text" name="scrumMasterName" required />
+            <Form.Control
+              type="text"
+              name="scrumMasterName"
+              maxLength="200"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="productOwnerName">
             <Form.Label>Product Owner Name</Form.Label>
-            <Form.Control type="text" name="productOwnerName" required />
+            <Form.Control
+              type="text"
+              name="productOwnerName"
+              maxLength="200"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="startDate">
             <Form.Label>Start Date</Form.Label>
