@@ -1,7 +1,6 @@
 venv
 env
 .env
-Dockerfile
 node_modules
 
 # dependencies
