@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
+import serialize from "form-serialize";
 
 export const Page = () => {
   const client = axios.create({
@@ -23,9 +24,9 @@ export const Page = () => {
     setProductOpen(product[index]);
     setShowEdit(true);
   };
-  const getProducts = () => {
+  const getProducts = (params = {}) => {
     client
-      .get("product/")
+      .get("product/", { params })
       .then((response) => {
         setProduct(response.data);
       })
@@ -86,6 +87,15 @@ export const Page = () => {
         }
       });
   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const data = serialize(e.target, { hash: true, empty: true });
+    getProducts(data);
+    return;
+  };
+  const resetSearch = () => {
+    getProducts();
+  };
   useEffect(() => {
     const getInitialData = async () => {
       axios
@@ -117,22 +127,31 @@ export const Page = () => {
       <Button variant="primary" className="my-2" onClick={handleShowAdd}>
         Add Product
       </Button>{" "}
-      <Form>
+      <Form onSubmit={handleSearch}>
         <Row>
           <Col>
             <Form.Control
               type="text"
+              name="developer"
               placeholder="Search by Developer's name"
+              max="200"
             />
           </Col>
           <Col>
             <Form.Control
               type="text"
+              name="scrumMasterName"
               placeholder="Search by Scrum Master's name"
+              max="200"
             />
           </Col>
           <Col>
-            <Button variant="primary">Search</Button>{" "}
+            <Button variant="info" type="submit">
+              Search
+            </Button>{" "}
+            <Button variant="warning" onClick={resetSearch}>
+              Reset Search
+            </Button>
           </Col>
         </Row>
       </Form>
@@ -143,6 +162,9 @@ export const Page = () => {
         editProduct={editProduct}
         item={productOpen}
       />
+      <h6 style={{ color: "blue" }} className="text-left">
+        Total: {product.length}
+      </h6>
       {product.length === 0 ? (
         <h3>No data to display</h3>
       ) : (
@@ -178,7 +200,11 @@ export const Page = () => {
                   </td>
                   <td key={`developers-${item.productId}`}>
                     {item.Developers.map((dev) => (
-                      <Badge bg="info" pill key={`${dev}=${item.productId}`}>
+                      <Badge
+                        bg="secondary"
+                        pill
+                        key={`${dev}=${item.productId}`}
+                      >
                         {dev}
                       </Badge>
                     ))}

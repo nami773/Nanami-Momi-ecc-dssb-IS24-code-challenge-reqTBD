@@ -111,7 +111,9 @@ export const EditModal = ({ show, setShow, editProduct, item }) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="Developers">
             <Form.Label>
-              Developers - assign up to 5 , click the badge to delete developers
+              Developers - assign up to 5 ,
+              <span style={{ color: "red" }}>click the badge</span> to delete
+              developers
             </Form.Label>
             <Row className="mt-2">
               <Col>
