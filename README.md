@@ -20,6 +20,9 @@ However, if you want to access backend admin page (http://localhost:3000/admin/)
 
 2.  After installing docker-compose, please run following commands at root directory.
 
+        cd frontend
+        npm install
+        cd ..
         docker-compose build
         docker-compose up
 
