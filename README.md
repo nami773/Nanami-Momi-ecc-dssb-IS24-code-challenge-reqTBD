@@ -48,7 +48,5 @@ After reading the specification, I made some assumptions about the project. I wo
 In this project, I prioritized implementing every functionalities mentioned in the specification.
 These are some improvements I'd like to make if I had more time.
 
-1. The UI design
-   I would like to make the UI more visually pleasing and include loading overlay for better user experience.
-2. Code refactoring
-   I would definetely refactor EditModal.js and AddModal.js so there is not code clone.
+1.  I would like to make the UI more visually pleasing and include loading overlay for better user experience.
+2. Code refactoring. I would definetely refactor EditModal.js and AddModal.js so there is not code clone.
