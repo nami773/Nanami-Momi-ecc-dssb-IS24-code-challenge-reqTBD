@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from core.models import Product
 from rest_framework import routers, serializers, viewsets, filters
+from rest_framework.schemas import get_schema_view
+from django.views.generic import TemplateView
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -35,4 +37,13 @@ router.register(r'product', ProductViewSet, basename='product')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('openapi', get_schema_view(
+        title="Your Project",
+        description="API for all things …",
+        version="1.0.0"
+    ), name='openapi-schema'),
+    path('api/api-docs/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='swagger-ui'),
 ]
