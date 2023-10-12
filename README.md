@@ -40,6 +40,7 @@ After reading the specification, I made some assumptions about the project. I wo
 1. When creating a new product, leaving assigned developers field empty is allowed.
 2. Delete functionality is not required from the UI side.
 3. "Call to action button for saving exits", I wasn't very sure about this functionality and took this as "Edit" button.
+4. The website is accessed from computers. Responsive design is not required.
 
 ## Future Work
 
