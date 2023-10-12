@@ -38,8 +38,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('openapi', get_schema_view(
-        title="Your Project",
-        description="API for all things …",
+        title="Web Applications Manager Project Backend API",
+        description="API for accepting queries for products database",
         version="1.0.0"
     ), name='openapi-schema'),
     path('api/api-docs/', TemplateView.as_view(
