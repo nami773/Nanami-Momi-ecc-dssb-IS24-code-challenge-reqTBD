@@ -16,7 +16,7 @@ class Product(models.Model):
     productOwnerName = models.CharField(max_length=200)
     scrumMasterName = models.CharField(max_length=200)
     startDate = models.DateField()
-    Developers = models.JSONField(default=[])
+    Developers = models.JSONField(default=list)
     methodology = models.CharField(
         max_length=10,
         choices=METHODOLOGY_CHOICES,
