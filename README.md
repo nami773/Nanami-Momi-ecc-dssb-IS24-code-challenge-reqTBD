@@ -29,7 +29,8 @@ However, if you want to access backend admin page (http://localhost:3000/admin/)
 Note that launching frontnend website may take few minutes this way.
 Please wait until following message comes up in the console.
 
-![image](https://github.com/nami773/Nanami-Momi-ecc-dssb-IS24-code-challenge-reqTBD/assets/128548019/974f025f-2bef-4875-993a-7225b41db1be)
+![image](https://github.com/nami773/Nanami-Momi-ecc-dssb-IS24-code-challenge-reqTBD/assets/128548019/83d5a004-672c-4e59-94e9-075cf302bcd8)
+
 
 The sqlite database is pre-populated with data in "backend\backend\sample.json", so there is no further action required.
 
