@@ -146,7 +146,7 @@ export const Page = () => {
             />
           </Col>
           <Col>
-            <Button variant="info" type="submit">
+            <Button variant="primary" type="submit">
               Search
             </Button>{" "}
             <Button variant="warning" onClick={resetSearch}>
@@ -162,9 +162,7 @@ export const Page = () => {
         editProduct={editProduct}
         item={productOpen}
       />
-      <h6 style={{ color: "blue" }} className="text-left">
-        Total: {product.length}
-      </h6>
+      <h4>Total number of products: {product.length}</h4>
       {product.length === 0 ? (
         <h3>No data to display</h3>
       ) : (
